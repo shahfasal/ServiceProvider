@@ -6,7 +6,7 @@
     android:background="#fff"
     android:orientation="vertical"
     android:paddingLeft="5dp"
-
+    android:clickable="true"
     android:id="@+id/layout">
 
     <LinearLayout

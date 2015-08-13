@@ -4,6 +4,7 @@ package fragments;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import org.apache.http.HttpResponse;
@@ -36,6 +38,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
+import activities.ComplaintDescription;
 import asyncTasks.ComplaintStatusAyncTask;
 import asyncTasks.ImageFetcherAsyncTask;
 import quadvision.serviceprovider.CircleImageView;
@@ -137,6 +140,16 @@ public class ComplaintsFragmentNew extends Fragment {
                         .execute(new String[]{profile.getString("profile_image")});
                 ((TextView) row.findViewById(R.id.complaint_description))
                         .setText(data.getString("description"));
+//                LinearLayout layout = (LinearLayout) row.findViewById(R.id.layout);
+//                        layout.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                Toast.makeText(activity,"hiii",Toast.LENGTH_LONG).show();
+//                                Intent intent = new Intent(activity, ComplaintDescription.class);
+//                                startActivity(intent);
+//                            }
+//                        });
+
                 ((LinearLayout) row.findViewById(R.id.accepted))
                         .setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -185,14 +198,20 @@ public class ComplaintsFragmentNew extends Fragment {
                         .setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                new ComplaintStatusAyncTask(activity).execute(
+//                                new ComplaintStatusAyncTask(activity).execute(
+//
+//
+//                                        new String[]{
+//                                                complaintId,
+//                                                "escalated"
+//                                        }
+//                                );
 
+                                Intent intent = new Intent(activity, ComplaintDescription.class);
+                                intent.putExtra("id",complaintId);
+                                intent.putExtra("json",data.toString());
+                                startActivity(intent);
 
-                                        new String[]{
-                                                complaintId,
-                                                "escalated"
-                                        }
-                                );
                             }
                         });
 

@@ -22,6 +22,7 @@
 
         android:background="@drawable/bg_for_profilee">
 
+
         <ImageView
             android:id="@+id/register_profile_image"
             android:layout_width="wrap_content"

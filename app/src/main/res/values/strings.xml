@@ -12,18 +12,23 @@
         <item>Engineer</item>
     </string-array>
     <string-array name="acc_type">
-        <item>North</item>
-        <item>South</item>
+        <item>WEST</item>
+        <item>SOUTH</item>
+        <item>YELAHANKA</item>
+        <item>MAHADEVPURA</item>
+        <item>RAJARAJESHWARINAGAR</item>
+        <item>BOMMANAHALLI</item>
+        <item>DASARAHALLI</item>
     </string-array>
     <string-array name="acc_Agency">
-        <item>BBMP</item>
+        <item>B B M P</item>
         <item>Mortuary</item>
         <item>Emergency</item>
         <item>Law and Order</item>
         <item>Snake Rescuer</item>
-        <item>BWSSB</item>
+        <item>B W S S B</item>
         <item>Pollution control</item>
-        <item>BESCOM</item>
+        <item>B E S C O M</item>
     </string-array>
     <string name="APP_ID">1424653754518797</string>
     <string name="PROD_APP_ID">1635326400023336</string>
