@@ -134,31 +134,7 @@
         android:orientation="horizontal"
         android:weightSum="2">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_margin="5dp"
-            android:id="@+id/completed"
-            android:background="@drawable/gray_border">
 
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView2"
-                android:layout_marginRight="5dp"
-                android:src="@drawable/comments"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Set Completed"
-
-                android:id="@+id/textView5" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -173,57 +149,29 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Escalate"
+                android:text="Details"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:id="@+id/textView6" />
         </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_margin="5dp"
-            android:id="@+id/accepted"
-            android:background="@drawable/gray_border">
-
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:layout_marginRight="5dp"
-                android:src="@drawable/comments"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Issue Accepted"
-
-                android:id="@+id/textView7" />
-        </LinearLayout>
-
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:layout_margin="5dp"
             android:gravity="center"
-            android:id="@+id/on_job"
+            android:id="@+id/comment"
             android:background="@drawable/gray_border"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Set On JOB"
-                android:id="@+id/textView8" />
+                android:text="Comments"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/textView7" />
         </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>

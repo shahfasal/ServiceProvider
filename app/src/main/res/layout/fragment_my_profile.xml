@@ -23,7 +23,7 @@
         android:background="@drawable/bg_for_profilee">
 
 
-        <ImageView
+        <views.CircleImageView
             android:id="@+id/register_profile_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

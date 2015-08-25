@@ -8,13 +8,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -28,7 +32,7 @@ import services.RegistrationIntentService;
 /**
  * Created by fasal on 10-08-2015.
  */
-public class HomeTabClass extends FragmentActivity {
+public class HomeTabClass extends ActionBarActivity {
     ViewPager viewpager;
     SlidingTabLayout tabs;
     ProgressDialog progress;
@@ -38,7 +42,7 @@ public class HomeTabClass extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_tab_layout);
-
+      getSupportActionBar().setTitle("Aptamitra");
         viewpager = (ViewPager) findViewById(R.id.pager);
         tabs = (SlidingTabLayout)findViewById(R.id.tabs);
         viewpager.setAdapter(new TabsAdapter(getSupportFragmentManager()));
@@ -124,4 +128,39 @@ public class HomeTabClass extends FragmentActivity {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
         super.onPause();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_hometab, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_callus) {
+            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            callIntent.setData(Uri.parse("tel:" + "08046665666"));
+            callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+           startActivity(callIntent);
+
+
+        }
+        if (id == R.id.action_logout) {
+            getSharedPreferences("cache", MODE_PRIVATE).edit().clear();
+            Intent intent = new Intent(HomeTabClass.this,activities.MainActivity.class);
+            startActivity(intent);
+            finish();
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
+
+

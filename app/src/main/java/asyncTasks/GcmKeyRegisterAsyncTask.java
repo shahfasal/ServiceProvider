@@ -36,13 +36,15 @@ public class GcmKeyRegisterAsyncTask extends AsyncTask<HashMap<String,String>, I
     @Override
     protected void onProgressUpdate(Integer... values) {
         // TODO Auto-generated method stub
-        super.onProgressUpdate(values);
-        progress = new ProgressDialog(activity);
-        progress.setMessage("please wait... ");
-        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progress.setIndeterminate(true);
-        progress.setCancelable(false);
-        progress.show();
+//        super.onProgressUpdate(values);
+//        progress = new ProgressDialog(activity);
+//        progress.setMessage("please wait... ");
+//        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//        progress.setIndeterminate(true);
+//        progress.setCancelable(false);
+//        if(progress!=null) {
+//            progress.show();
+//        }
 
     }
 
@@ -87,7 +89,7 @@ public class GcmKeyRegisterAsyncTask extends AsyncTask<HashMap<String,String>, I
     protected void onPostExecute(String result) {
         // TODO Auto-generated method stub
         super.onPostExecute(result);
-        progress.hide();
+        //progress.hide();
         Log.d("GcmKeyRegisterAsyncTask",result);
 
     }

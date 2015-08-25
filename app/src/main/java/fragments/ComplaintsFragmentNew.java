@@ -38,6 +38,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
+import activities.CommentListActivity;
 import activities.ComplaintDescription;
 import asyncTasks.ComplaintStatusAyncTask;
 import asyncTasks.ImageFetcherAsyncTask;
@@ -119,7 +120,7 @@ public class ComplaintsFragmentNew extends Fragment {
 //                JSONObject profile = new JSONObject(prefs.getString("profile", null));
 
 
-                final JSONObject data = complaintsData.get(position);
+                final JSONObject data = complaintsData.get(complaintsData.size() - 1 - position);
                 JSONObject profile = new JSONObject(data.getString("profile_user").replace("\\\"", "\""));
 
                 final String complaintId = data.getString("complaint_id");
@@ -150,66 +151,28 @@ public class ComplaintsFragmentNew extends Fragment {
 //                            }
 //                        });
 
-                ((LinearLayout) row.findViewById(R.id.accepted))
-                        .setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                new ComplaintStatusAyncTask(activity).execute(
 
-
-                                        new String[]{
-                                                complaintId,
-                                                "accepted"
-                                        }
-                                );
-                            }
-                        });
-                ((LinearLayout) row.findViewById(R.id.completed))
-                        .setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                new ComplaintStatusAyncTask(activity).execute(
-
-
-                                        new String[]{
-                                                complaintId,
-                                                "completed"
-                                        }
-                                );
-                            }
-                        });
-
-                        ((LinearLayout) row.findViewById(R.id.on_job))
-                        .setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                new ComplaintStatusAyncTask(activity).execute(
-
-
-                                        new String[]{
-                                                complaintId,
-                                                "onjob"
-                                        }
-                                );
-                            }
-                        });
 
                         ((LinearLayout) row.findViewById(R.id.escalate))
                         .setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-//                                new ComplaintStatusAyncTask(activity).execute(
-//
-//
-//                                        new String[]{
-//                                                complaintId,
-//                                                "escalated"
-//                                        }
-//                                );
 
                                 Intent intent = new Intent(activity, ComplaintDescription.class);
                                 intent.putExtra("id",complaintId);
                                 intent.putExtra("json",data.toString());
+                                startActivity(intent);
+
+                            }
+                        });
+                ((LinearLayout) row.findViewById(R.id.comment))
+                        .setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                Intent intent = new Intent(activity, CommentListActivity.class);
+                                intent.putExtra("id",complaintId);
+                               // intent.putExtra("json",data.toString());
                                 startActivity(intent);
 
                             }
@@ -311,9 +274,10 @@ public class ComplaintsFragmentNew extends Fragment {
                  */
 
                         if (complaint.getString("agency").toLowerCase().contentEquals(agency.toLowerCase())
-                                ) {
+                                )
+                                 {
                             complaintList.add(complaint);
-
+                            Log.e("check","i was here");
                             Log.e("list", complaintList.toString());
 
                         }
@@ -321,6 +285,7 @@ public class ComplaintsFragmentNew extends Fragment {
 
                     }
                 } else {
+                    Log.e("check","why i ws  here");
                     for (int i = 0; i < complaints.length(); i++) {
                         JSONObject complaint = complaints.getJSONObject(i);
                     /*

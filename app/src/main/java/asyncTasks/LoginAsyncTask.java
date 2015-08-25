@@ -102,7 +102,9 @@ public class LoginAsyncTask extends AsyncTask<String, Integer, String> {
         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progress.setIndeterminate(true);
         progress.setCancelable(false);
+        if(progress!=null){
         progress.show();
+        }
 
     }
 

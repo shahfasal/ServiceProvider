@@ -76,8 +76,8 @@
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_margin="20dp"
-
-            android:src="@drawable/upload_image" />
+            android:fontFamily="sans-serif"
+            android:background="@drawable/upload_button" />
 
 
         <EditText
@@ -135,6 +135,7 @@
             android:layout_height="wrap_content"
             android:inputType="text|number"
             android:ems="10"
+            android:maxLength="10"
             android:layout_margin="20dp"
             android:hint="Mobile"
             android:background="@drawable/gray_border"
@@ -171,6 +172,8 @@
                 android:ems="10"
                 android:background="@drawable/gray_border"
                 android:layout_marginLeft="20dp"
+                android:editable="false"
+                android:focusable="false"
                 android:layout_marginRight="20dp"
                 android:hint="tap to select speciality"
                 android:padding="10dp"

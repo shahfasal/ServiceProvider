@@ -17,6 +17,7 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -62,6 +63,8 @@ public class RegisterActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         setup();
         backButton = (ImageView) findViewById(R.id.icon_back);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -579,14 +582,14 @@ public class RegisterActivity extends ActionBarActivity {
 
             }
         });
-
+        s3 = (Spinner) findViewById(R.id.spinner3);
         spagency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selected = String.valueOf(spagency.getSelectedItem());
                 List<String> list = null;// = Arrays.asList("Vidyaranyapura", "Yelahanka", "WhiteField");
                 switch (selected) {
-                    case "BBMP":
+                    case "B B M P":
                         list = Arrays.asList("Commissioner", "Joint commissioner", "Range Forest Officer",
                                 "Assistant Engineer Street Light", "Horticulture Incharge", " Assistant Revenue Officer",
                                 "Revenue Officer", "Assistant Engineer", "Health Inspector",
@@ -608,21 +611,21 @@ public class RegisterActivity extends ActionBarActivity {
                     case "Snake Rescuer":
                         list = Arrays.asList("Snake Rescuer");
                         break;
-                    case "BWSSB":
+                    case "B W S S B":
                         list = Arrays.asList("Assistant Executive Engineer", "Assistant Engineer", "Assistant Executive Engineer",
                                 "Assistant Engineer");
                         break;
                     case "Pollution control":
                         list = Arrays.asList("Pollution control Personnel");
                         break;
-                    case "BESCOM":
+                    case "B E S C O M":
                         list = Arrays.asList("Assistant Executive Engineer");
                         break;
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(RegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, list);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                adapter.notifyDataSetChanged();
-                s3.setAdapter(adapter);
+                ArrayAdapter<String> adapters = new ArrayAdapter<String>(RegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, list);
+                adapters.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                adapters.notifyDataSetChanged();
+               s3.setAdapter(adapters);
                 s3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -702,7 +705,36 @@ public class RegisterActivity extends ActionBarActivity {
                             });
                     AlertDialog alert11 = builder1.create();
                     alert11.show();
-                }
+                }else if (mobileText.length() != 10) {
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(
+                            RegisterActivity.this);
+                    builder1.setMessage("Mobile number is in appropriate");
+                    builder1.setCancelable(true);
+                    builder1.setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog alert11 = builder1.create();
+                    alert11.show();
+               }
+// else if (pincodeText.length() != 6) {
+//                    AlertDialog.Builder builder1 = new AlertDialog.Builder(
+//                            RegisterActivity.this);
+//                    builder1.setMessage("pincode is in appropriate");
+//                    builder1.setCancelable(true);
+//                    builder1.setPositiveButton("Ok",
+//                            new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog,
+//                                                    int id) {
+//                                    dialog.cancel();
+//                                }
+//                            });
+//                    AlertDialog alert11 = builder1.create();
+//                    alert11.show();
+//                }
 
                 /*
                 check for password and confirm password

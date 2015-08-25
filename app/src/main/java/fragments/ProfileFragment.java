@@ -5,6 +5,7 @@ package fragments;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,11 +17,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
 import asyncTasks.ImageFetcherAsyncTask;
 import quadvision.serviceprovider.R;
+import quadvision.serviceprovider.StringDecoder;
+import views.CircleImageView;
 
 public class ProfileFragment extends Fragment {
 
@@ -66,7 +70,22 @@ public class ProfileFragment extends Fragment {
             ((TextView)activity.findViewById(R.id.designation)).setText(agency+" >"+designation);
             ((TextView)activity.findViewById(R.id.speciality)).setText(skills);
             ((TextView)activity.findViewById(R.id.zone)).setText(zone);
-            new ImageFetcherAsyncTask(((ImageView)activity.findViewById(R.id.register_profile_image))).execute(profile.getString("profile_image"));
+           // new ImageFetcherAsyncTask(((ImageView)activity.findViewById(R.id.register_profile_image))).execute(profile.getString("profile_image"));
+
+            String url = StringDecoder.decode(profile.getString("profile_image"));
+            if(!url.trim().contentEquals(""))
+            {
+                views.CircleImageView circleImageView = (views.CircleImageView)activity.findViewById(R.id.register_profile_image);
+                Picasso.with(activity).load(url).resize(150, 150).into(circleImageView);
+
+            }else{
+
+                CircleImageView circleImageView = (CircleImageView)activity.findViewById(R.id.register_profile_image);
+                Drawable myDrawable = getResources().getDrawable(
+                        R.drawable.image);
+                circleImageView.setImageDrawable(myDrawable);
+                //circleImageView.setImageResource(R.drawable.image);
+            }
 
         }
         catch(Exception e)
